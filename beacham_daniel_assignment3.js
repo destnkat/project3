@@ -1,21 +1,16 @@
 //Global Vars
 var companyName = "ACME Testing",
     specialSkills = ['Javascript', 'HTML5', 'CSS'];
-    bonusOffered = false;
     lastEmployeeId = 4667;
 
 function Employee (empInfo) {
     //Local Vars
     var isContractor = empInfo.contractor,
-        skillSet = ['PHP', 'MySQL', 'Javascript', 'jQuery'],
-        employeeId = lastEmployeeId++,
+        bonusOffered = empInfo.bonusEligible,
+        skillSet = empInfo.skills,
         jobDescription = empInfo.position,
-        company = {
-            name : companyName,
-            numEmployees:500
-        },
-        startingSalary = 0;
-
+        employeeId,
+        startingSalary;
 
     Employee.prototype.setStartingSalary = function (salary) { //mutator
         startingSalary = salary;
@@ -38,11 +33,18 @@ function Employee (empInfo) {
 
 window.onload = function(){
     var employeeInfo =  {
-        name : 'Adam',
-        position: 'Web Developer',
-        contractor : 'true'
+        "name": "Adam",
+        "position": "WebDeveloper",
+        "contractor": true,
+        "bonusEligible": false,
+        "skills": [
+            "PHP",
+            "MySQL",
+            "Javascript",
+            "jQuery"
+        ]
     }
-    
+
     var adam = new Employee(employeeInfo);
         adam.setStartingSalary(75000);
         adam.calculateSalary();
