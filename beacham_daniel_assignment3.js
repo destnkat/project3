@@ -31,23 +31,43 @@ function Employee (empInfo) {
     }
 };
 
-window.onload = function(){
-    var employeeInfo =  {
-        "name": "Adam",
-        "position": "WebDeveloper",
-        "contractor": true,
-        "bonusEligible": false,
-        "skills": [
-            "PHP",
-            "MySQL",
-            "Javascript",
-            "jQuery"
-        ]
+function startTheJobHunt(candidates) {
+    for(var i = 0; i < candidates.length; i++) {
+        var interviewProcess = 'begin';
+
+        while (interviewProcess !== 'complete') {  //Nested and While Loop
+            //Run the Interview Process
+            interviewProcess = 'complete';
+        }
+        //Not coding the Entire Interview Process, so I took a shortcut by hard coding a winner :)
+        if (candidates[i].toLowerCase() === 'meeko') {
+
+            console.log(candidates[i] + ' Is who we want to hire. He is Awesome!')
+            return {
+                "name": candidates[i],
+                "position": "Web Developer",
+                "contractor": true,
+                "bonusEligible": false,
+                "skills": [
+                    "PHP",
+                    "MySQL",
+                    "Javascript",
+                    "jQuery"
+                ]
+            }
+        } else {
+            console.log(candidates[i] + ' Is Not Hired');
+        }
     }
+}
 
-    var adam = new Employee(employeeInfo);
-        adam.setStartingSalary(75000);
-        adam.calculateSalary();
+window.onload = function(){
+    var candidates = ['Aurora', 'Beast', 'Belle', 'Naveen', 'Meeko'];
+    var winningCandidate = startTheJobHunt(candidates);
+    var hiredEmployee = new Employee(winningCandidate);
 
-    console.log(adam.getTotalCompensation());
+    hiredEmployee.setStartingSalary(75000);
+    hiredEmployee.calculateSalary();
+
+    console.log('Total Compensation: ' + hiredEmployee.getTotalCompensation());
 };
