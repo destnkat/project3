@@ -45,7 +45,7 @@ var candidatesJSON = {
 }
 
 function Employee (empInfo) {
-    //Local Vars
+    //Obj Properties
     this.isContractor = empInfo.contractor,
     this.skillSet = empInfo.skills,
     this.jobDescription = empInfo.position,
@@ -66,6 +66,7 @@ function Employee (empInfo) {
 
 Employee.prototype.setStartingSalary = function(salary) { //mutator
         this.startingSalary = salary;
+        return this;
 };
 
 Employee.prototype.getTotalCompensation = function() {  //Accessor
@@ -84,7 +85,11 @@ Employee.prototype.calculateSalary = function (specialSkills) {
                 this.startingSalary += 2500;
                 if (this.isContractor && this.bonusOffered) {  //Nested Conditional
                     this.startingSalary += 1000;
+                } else {
+                    console.log('No Bonus Offered');
                 }
+            } else {
+                console.log('Not a Special Skill');
             }
         }
 };
